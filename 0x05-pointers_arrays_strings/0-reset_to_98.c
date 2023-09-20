@@ -1,11 +1,8 @@
 #include "main.h"
 /**
-*  reset_to_98 - takes the pointer and updates the value
-*  @n: int to check
-*  Owned By Abdeljalil Ouafi
-*  Return: 0 is success
-*/
-
+ * reset_to_98 - updates the value it points to to 98.
+ * @n: The character to reset
+ */
 void reset_to_98(int *n)
 {
 	*n = 98;
