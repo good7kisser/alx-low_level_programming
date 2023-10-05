@@ -1,42 +1,38 @@
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * count_word - helper function to count the number of words in a string
- * @s: string to evaluate
- *
- * Return: number of words
+ * _strlen - returns the length of a given string
+ * @s: the string
+ * Return: the length of given string
  */
-int count_word(char *s)
+
+int _strlen(char *s)
 {
-	int count, c, w;
+	int i;
 
-	count = 0;
-	w = 0;
-
-	for (c = 0; s[c] != '\0'; c++)
+	i = 0;
+	while (s[i])
 	{
-		if (s[c] == ' ')
-			count = 0;
-		else if (count == 0)
-		{
-			count = 1;
-			w++;
-		}
+		i++;
 	}
-
-	return (w);
+	return (i);
 }
-/**
- * **strtow - splits a string into words
- * @str: string to split
- *
- * Return: pointer to an array of strings (Success)
- * or NULL (Error)
- */
-char **strtow(char *str)
-{
-	char **matrix, *tmp;
-	int i, k = 0, len = 0, words, c = 0, start, end;
 
-	while (*(str + len))
+/**
+ * _strncpy - copies n bytes from src to dest
+ * @dest: the destination string
+ * @src: the source string
+ * @n: the number of bytes
+ * Return: dest
+ */
+
+char *_strncpy(char *dest, char *src, int n)
+{
+	int i;
+
+	i = 0;
+	while (src[i] && i < n)
+	{
+		dest[i] = src[i];
