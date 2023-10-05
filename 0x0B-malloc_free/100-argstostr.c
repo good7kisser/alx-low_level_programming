@@ -1,38 +1,42 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
-
 /**
- * _strlen - returns the length of a given string
- * @s: the string
- * Return: the length of given string
+ * argstostr - Concatenates all the arguments into a single string.
+ * @ac: The number of arguments.
+ * @av: An array of pointers to strings.
+ * Return: A pointer to the concatenated string.
  */
-
-int _strlen(char *s)
+char *argstostr(int ac, char **av)
 {
-	int i;
+	 int total_length = 0;
+	 int i, j, k = 0;
+	 char *str;
 
-	i = 0;
-	while (s[i])
+	if (ac == 0 || av == NULL)
 	{
-		i++;
+		return (NULL);
 	}
-	return (i);
+
+	for (i = 0; i < ac; i++)
+		for (j = 0; av[i][j]; j++)
+		{
+			total_length++;
+		}
+
+	str = malloc(sizeof(char) * (total_length + ac + 1));
+
+	if (str == NULL)
+		return (NULL);
+
+	for (i = 0; i < ac; i++)
+	{
+		for (j = 0; av[i][j]; j++)
+			str[k++] = av[i][j];
+		str[k++] = '\n';
+	}
+	str[k] = '\0';
+	return (str);
 }
 
-/**
- * _create_array - creates an array of chars.
- * @size: the size of the memory to allocate.
- * Return: the array created.
- */
 
-char *_create_array(unsigned int size)
-{
-	char *array;
 
-	if (size == 0)
-		return (NULL);
-	array = malloc(sizeof(char) * size);
-	if (!array)
-		return (NULL);
-	return (array);
