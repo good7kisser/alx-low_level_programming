@@ -4,7 +4,7 @@
 /**
  * count_word - helper function to count the number of words in a string
  * @s: string to evaluate
- * Made by Abdeljalil Ouafi
+ * Written by Abdelhadi Bensaber
  * Return: number of words
  */
 int count_word(char *s)
@@ -27,4 +27,3 @@ int count_word(char *s)
 
 	return (w);
 }
-/**
