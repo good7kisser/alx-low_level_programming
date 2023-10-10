@@ -1,94 +1,53 @@
-#include "dog.h"
 #include <stdlib.h>
-
-/**
- * _strlen - returns the length of a given string
- * @s: the string
- * Return: the length of given string
- */
-
-int _strlen(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
-/**
- * _create_array - creates an array of chars.
- * @size: the size of the memory to allocate.
- * Return: the array created.
- */
-
-char *_create_array(unsigned int size)
-{
-	char *array;
-
-	if (size == 0)
-		return (NULL);
-	array = malloc(sizeof(char) * size);
-	if (!array)
-		return (NULL);
-	return (array);
-}
-
-/**
- * _strdup - duplicates a given string.
- * @str: the string to duplicate.
- * Return: the array created.
- */
-
-char *_strdup(char *str)
-{
-	char *new_str;
-	int i;
-
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	new_str = _create_array(_strlen(str) + 1);
-	if (!new_str)
-		return (NULL);
-	while (i <= _strlen(str))
-	{
-		new_str[i] = str[i];
-		i++;
-	}
-	return (new_str);
-}
+#include "dog.h"
 
 /**
  * new_dog - creates a new dog
- * @name: dogs name
- * @age: the dog's age
- * @owner: the owner's name
- * Return: the dog created, NULL otherwise
+ * @name: name of the dog
+ * @age: age of the dog
+ * @owner: owner of the dog
+ *
+ * Return: pointer to the new dog (Success), NULL otherwise
  */
-
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new_dog = malloc(sizeof(dog_t));
+	int len1, len2;
+	dog_t *dog;
+	int i;
 
-	if (!new_dog)
+	len1 = 0;
+	while (name[len1])
+		len1++;
+
+	len2 = 0;
+	while (owner[len2])
+		len2++;
+
+	dog = malloc(sizeof(dog_t));
+	if (dog == NULL)
 		return (NULL);
-	new_dog->name = _strdup(name);
-	if (!new_dog->name)
+
+	dog->name = malloc(sizeof(char) * (len1 + 1));
+	if (dog->name == NULL)
 	{
-		free(new_dog);
+		free(dog);
 		return (NULL);
 	}
-	new_dog->age = age;
-	new_dog->owner = _strdup(owner);
-	if (!new_dog->owner)
+	dog->owner = malloc(sizeof(char) * (len2 + 1));
+	if (dog->owner == NULL)
 	{
-		free(new_dog->name);
-		free(new_dog);
+		free(dog);
+		free(dog->name);
 		return (NULL);
 	}
-	return (new_dog);
+
+	for (i = 0; i <= len1; i++)
+		dog->name[i] = name[i];
+
+	for (i = 0; i <= len2; i++)
+		dog->owner[i] = owner[i];
+
+	dog->age = age;
+
+	return (dog);
 }
