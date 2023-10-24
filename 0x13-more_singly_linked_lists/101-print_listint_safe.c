@@ -4,6 +4,7 @@
  * print_listint_safe - prints a listint_t linked list, even if it has a loop
  * @head: pointer to the head of the list
  * Return: the number of nodes in the list
+ * created by : good7kisser
  */
 
 size_t print_listint_safe(const listint_t *head)
